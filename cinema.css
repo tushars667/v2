@@ -1,0 +1,118 @@
+/* THE CINEMATIC CUT — V2. Every scene is orchestrated by scroll position.
+   The scroll itself is the timeline: no scrolljacking, no dependencies. */
+:root{--cut-gold:#f5cb8a}
+body{overflow-x:clip}
+#cinemaParticles{position:fixed;inset:0;width:100%;height:100%;z-index:62;pointer-events:none;opacity:.94;mix-blend-mode:screen}
+.cinema-portal{--impact:0;--copy-opacity:0;--wing:101%;--ring-scale:.7;--ring-rotation:0deg;--art-scale:1.17;--art-opacity:0;--portal-bg:#0a211c;--portal-wing:#102c24;--portal-accent:#e3b876;--portal-ink:#ffeed5;position:fixed;inset:0;z-index:81;pointer-events:none;overflow:hidden;opacity:0;isolation:isolate;will-change:opacity;transform:translateZ(0)}
+.cinema-portal[data-theme="parchment"]{--portal-bg:#e6cfa5;--portal-wing:#ba865e;--portal-accent:#fff0ca;--portal-ink:#fff5e3}
+.cinema-portal[data-theme="cosmos"]{--portal-bg:#071a26;--portal-wing:#10172d;--portal-accent:#cad7ff;--portal-ink:#fff6e5}
+.cinema-portal[data-theme="floral"]{--portal-bg:#223d32;--portal-wing:#3e5535;--portal-accent:#f3cb9e;--portal-ink:#fbf1dc}
+.cinema-portal[data-theme="sufi"]{--portal-bg:#10172c;--portal-wing:#1a2554;--portal-accent:#ddcbff;--portal-ink:#f6eaf7}
+.cinema-portal[data-theme="haldi"]{--portal-bg:#ef9c20;--portal-wing:#c67a1a;--portal-accent:#ffed93;--portal-ink:#fff8d8}
+.cinema-portal[data-theme="baraat"]{--portal-bg:#17452f;--portal-wing:#244c32;--portal-accent:#f7d392;--portal-ink:#fff1d2}
+.cinema-portal[data-theme="reception"]{--portal-bg:#341e35;--portal-wing:#6b3045;--portal-accent:#f8c7c3;--portal-ink:#ffece4}
+.cinema-portal[data-theme="wedding"]{--portal-bg:#231421;--portal-wing:#6f2d28;--portal-accent:#ffb77f;--portal-ink:#ffecd3}
+.cinema-portal[data-theme="blessings"]{--portal-bg:#102c25;--portal-wing:#17442f;--portal-accent:#d4bf86;--portal-ink:#fff4db}
+.cinema-portal[data-theme="destination"]{--portal-bg:#2d4736;--portal-wing:#56704e;--portal-accent:#eed5a0;--portal-ink:#fbecd1}
+.cinema-portal[data-theme="forever"]{--portal-bg:#4b202e;--portal-wing:#752c42;--portal-accent:#ffd6ab;--portal-ink:#fff2d5}
+.portal-base{position:absolute;inset:-5%;background:radial-gradient(ellipse at 50% 42%,color-mix(in srgb,var(--portal-accent) 25%,var(--portal-bg)),var(--portal-bg) 70%);transform:scale(var(--art-scale));opacity:var(--impact)}
+.portal-art{position:absolute;inset:-5%;width:110%;height:110%;object-fit:cover;opacity:var(--art-opacity);mix-blend-mode:luminosity;filter:saturate(.5) contrast(1.05);transform:scale(var(--art-scale));mask-image:radial-gradient(ellipse at center,black 22%,transparent 85%)}
+.portal-grain{position:absolute;inset:0;opacity:.37;background-image:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,.08) 4px),radial-gradient(circle at 50% 50%,transparent 28%,#0307088c 100%);mix-blend-mode:multiply}
+.portal-wing{position:absolute;top:-8%;bottom:-8%;width:51%;background:linear-gradient(90deg,rgba(0,0,0,.52),transparent 13%,rgba(255,234,167,.10) 50%,transparent 87%,rgba(0,0,0,.58)),repeating-linear-gradient(90deg,transparent 0 23px,rgba(255,234,164,.07) 24px 25px,transparent 26px 48px),var(--portal-wing);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--portal-accent) 55%,transparent),inset 0 0 72px #0008;z-index:2;will-change:transform}
+.portal-wing::after{content:"";position:absolute;inset:4%;border:1px solid color-mix(in srgb,var(--portal-accent) 36%,transparent);opacity:.7}
+.portal-wing--left{left:0;transform:translate3d(calc(0px - var(--wing)),0,0);clip-path:polygon(0 0,100% 0,95% 50%,100% 100%,0 100%)}
+.portal-wing--right{right:0;transform:translate3d(var(--wing),0,0);clip-path:polygon(0 0,100% 0,100% 100%,0 100%,5% 50%)}
+.portal-wheel{position:absolute;z-index:3;top:50%;left:50%;height:80vmax;width:80vmax;max-height:900px;max-width:900px;border-radius:50%;border:1px solid color-mix(in srgb,var(--portal-accent) 62%,transparent);box-shadow:0 0 0 22px #ffffff07,0 0 0 56px #ffffff07,inset 0 0 0 30px #ffffff05,inset 0 0 100px #0005;transform:translate(-50%,-50%) scale(var(--ring-scale)) rotate(var(--ring-rotation));opacity:var(--impact)}
+.portal-wheel::before,.portal-wheel::after{content:"";position:absolute;border-radius:50%;inset:8%;border:1px dashed color-mix(in srgb,var(--portal-accent) 65%,transparent)}
+.portal-wheel::after{inset:17%;border-style:solid;opacity:.6;box-shadow:inset 0 0 0 25px #ffffff04}
+.portal-flower{position:absolute;z-index:4;left:50%;top:50%;font:300 clamp(170px,46vw,490px)/1 var(--serif);color:var(--portal-accent);text-shadow:0 0 38px color-mix(in srgb,var(--portal-accent) 68%,transparent),0 0 100px color-mix(in srgb,var(--portal-accent) 40%,transparent);transform:translate(-50%,-50%) rotate(var(--ring-rotation)) scale(var(--ring-scale));opacity:var(--flower-opacity,0);white-space:nowrap}
+.portal-sparks{position:absolute;inset:0;z-index:5;overflow:hidden}
+.portal-sparks span{position:absolute;color:var(--portal-accent);font:clamp(18px,3vw,47px) var(--serif);text-shadow:0 0 22px currentColor;opacity:var(--impact);transform:translate3d(0,var(--spark-y,0px),0) rotate(var(--ring-rotation));will-change:transform}
+.portal-sparks span:nth-child(1){left:12%;top:20%;font-size:27px}.portal-sparks span:nth-child(2){left:81%;top:18%;font-size:32px}.portal-sparks span:nth-child(3){left:17%;top:79%;font-size:40px}.portal-sparks span:nth-child(4){left:82%;top:72%;font-size:23px}.portal-sparks span:nth-child(5){left:57%;top:13%;font-size:17px}.portal-sparks span:nth-child(6){left:39%;top:85%;font-size:20px}
+.portal-copy{position:absolute;z-index:8;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:38px 24px;color:var(--portal-ink);opacity:var(--copy-opacity);transform:translate3d(0,var(--copy-offset,0px),0);text-shadow:0 2px 20px #0009}
+.portal-copy::before,.portal-copy::after{content:"";display:block;width:min(220px,58vw);height:1px;background:linear-gradient(90deg,transparent,var(--portal-accent),transparent);margin:20px 0}
+.portal-index{font:500 10px/1.8 var(--sans);letter-spacing:.4em;color:var(--portal-accent)}
+.portal-name{font:400 clamp(67px,14vw,162px)/.77 var(--serif);letter-spacing:-.055em;max-width:100%;margin:24px 0 20px;text-wrap:balance}
+.portal-name em{font-family:var(--script);font-size:.73em;font-style:normal;color:var(--portal-accent)}
+.portal-caption{font:400 clamp(15px,2.3vw,25px)/1.45 var(--serif);letter-spacing:.055em;max-width:390px;margin:0;color:var(--portal-ink)}
+.portal-sub{font:500 9px var(--sans);letter-spacing:.3em;color:var(--portal-accent);margin-top:34px}
+.portal-slit{position:absolute;z-index:7;top:0;bottom:0;left:50%;width:1px;background:linear-gradient(to bottom,transparent,var(--portal-accent),transparent);box-shadow:0 0 20px 5px color-mix(in srgb,var(--portal-accent) 30%,transparent);opacity:var(--impact)}
+/* The worlds do not all transition the same way. */
+.cinema-portal[data-theme="parchment"] .portal-wing{background:repeating-linear-gradient(120deg,rgba(255,234,182,.16) 0 1px,transparent 1px 31px),linear-gradient(165deg,#a6754f,#c99862,#926041)}
+.cinema-portal[data-theme="cosmos"] .portal-wing,.cinema-portal[data-theme="sufi"] .portal-wing{background:radial-gradient(circle at 38% 44%,#b7a6ff34,transparent 50%),repeating-radial-gradient(circle at center,transparent 0 21px,#d5c5ff14 22px 23px),var(--portal-wing)}
+.cinema-portal[data-theme="haldi"] .portal-wing{background:repeating-conic-gradient(from 12deg at 50% 50%,#ffc35530 0deg 11deg,#bd691b50 12deg 20deg),var(--portal-wing)}
+.cinema-portal[data-theme="haldi"] .portal-flower{opacity:var(--flower-opacity,0);font-size:clamp(230px,58vw,650px)}
+.cinema-portal[data-theme="baraat"] .portal-wing{background:repeating-linear-gradient(65deg,#f5c4890f 0 15px,transparent 16px 50px),linear-gradient(120deg,#132f28,#3a5431,#173c2d)}
+.cinema-portal[data-theme="reception"] .portal-wing{background:repeating-linear-gradient(-30deg,transparent 0 32px,#ffece121 33px 34px,transparent 35px 62px),linear-gradient(135deg,#6a2c46,#311628,#8b5260)}
+.cinema-portal[data-theme="wedding"] .portal-wing{background:radial-gradient(ellipse at 100% 100%,#e8864b8c,transparent 65%),repeating-linear-gradient(90deg,transparent 0 24px,#ffa2631c 25px 27px),#56221c}
+.cinema-portal[data-theme="wedding"] .portal-flower{text-shadow:0 0 60px #e78a55,0 0 140px #e7813e}
+.cinema-portal[data-theme="forever"] .portal-wheel{border-style:double;border-width:7px}
+/* Each story image is a moving camera shot, not a static rectangle. */
+.chapter-image img{transform:translate3d(0,var(--scene-offset,0px),0) scale(var(--scene-scale,1.06)) rotate(var(--scene-tilt,0deg));transition:transform .1s linear;will-change:transform}
+.chapter-image.is-active img{transform:translate3d(0,var(--scene-offset,0px),0) scale(var(--scene-scale,1.06)) rotate(var(--scene-tilt,0deg))}
+.chapter-image::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(110deg,transparent 12%,rgba(255,240,182,.18) 36%,transparent 48%);mix-blend-mode:screen;opacity:var(--scene-shine,0);transform:translateX(var(--scene-shift,-80%));}
+.chapter-image .cinema-frame{position:absolute;inset:clamp(16px,2.4vw,38px);z-index:1;border:1px solid #ffecb23b;pointer-events:none;opacity:var(--scene-frame-opacity,.6);transform:scale(var(--scene-frame-scale,1.05));transition:opacity .3s}
+.chapter-image .cinema-frame::before,.chapter-image .cinema-frame::after{content:"";position:absolute;width:46px;height:46px;border:1px solid #f6d5a7aa;opacity:.6}
+.chapter-image .cinema-frame::before{top:-1px;left:-1px;border-right:0;border-bottom:0}.chapter-image .cinema-frame::after{bottom:-1px;right:-1px;border-left:0;border-top:0}
+.chapter-image .cinema-halo{position:absolute;left:50%;top:54%;width:70%;aspect-ratio:1;z-index:1;transform:translate(-50%,-50%) rotate(var(--halo-rotate,0deg)) scale(var(--halo-scale,1));border:1px solid #f9d7a337;box-shadow:0 0 0 21px #f9d7a30a,0 0 0 55px #f9d7a309;pointer-events:none;border-radius:50%;opacity:.55}
+.chapter-image .cinema-title-watermark{position:absolute;z-index:1;top:9%;left:50%;transform:translateX(-50%) translateY(var(--label-offset,0px));font:400 clamp(36px,7vw,94px)/.85 var(--serif);text-align:center;color:#fff4d71f;letter-spacing:.02em;text-shadow:0 0 4px #0005;white-space:nowrap;pointer-events:none;mix-blend-mode:screen}
+.theme-haldi .cinema-halo{box-shadow:0 0 0 28px #ffdd6c18,0 0 0 70px #ffe4800e}
+.theme-sufi .cinema-halo{box-shadow:0 0 0 25px #b8cfff12,0 0 0 70px #b8cfff09}
+.theme-wedding .cinema-halo{box-shadow:0 0 0 33px #f9b38e12,0 0 0 79px #fa9a5a0c}
+/* Word-by-word director's cut. Transforms are on the words, not the heading container. */
+.kinetic-clip{display:inline-block;overflow:hidden;vertical-align:baseline;padding-bottom:.11em;margin-bottom:-.11em}
+.kinetic-word{display:inline-block;opacity:0;transform:translate3d(0,115%,0) rotate(4deg);filter:blur(4px)}
+.is-visible .kinetic-word{animation:kinetic-word-in 1.15s cubic-bezier(.19,1,.2,1) both;animation-delay:calc(var(--word-index,0) * 85ms)}
+@keyframes kinetic-word-in{0%{opacity:0;transform:translate3d(0,115%,0) rotate(4deg);filter:blur(4px)}100%{opacity:1;transform:translate3d(0,0,0) rotate(0);filter:blur(0)}}
+/* Act introductions: readable typography over a subtle responsive moving world. */
+.invocation::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 50% 28%,#c09b6729,transparent 45%);transform:scale(var(--paper-zoom,1));opacity:.6}
+.invocation{position:relative}
+.invocation .motif{transform:translateY(var(--motif-y,0px)) scale(var(--motif-scale,1));filter:drop-shadow(0 0 28px #dbaf5645)}
+.date-number{transform:perspective(650px) rotateX(var(--date-tilt,0deg)) scale(var(--date-scale,1));filter:drop-shadow(0 0 30px #f5cc7839)}
+.date-halo{transform:translate(-50%,-50%) rotate(var(--date-ring,0deg));border-radius:50%;}
+.chapters-intro .editorial-title{transform:translateY(var(--intro-lift,0px));}
+.venue-graphic{transform:perspective(1200px) rotateY(var(--venue-rotate,0deg)) translateY(var(--venue-lift,0px));transition:transform .12s linear}
+.rsvp-deco{transform:rotate(var(--rsvp-rotation,0deg)) scale(var(--rsvp-scale,1));}
+/* A readable active-scene counter, rather than invasive snap-scroll navigation. */
+.scene-indicator{position:fixed;left:clamp(12px,3vw,46px);bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:69;color:#f5d3a0;text-shadow:0 2px 12px #000c;display:flex;align-items:center;gap:10px;opacity:0;transform:translateY(15px);pointer-events:none;transition:opacity .35s,transform .35s;mix-blend-mode:normal}
+.scene-indicator.show{opacity:.9;transform:translateY(0)}
+.scene-indicator .si-number{font:italic 25px/1 var(--serif)}
+.scene-indicator .si-rule{width:34px;height:1px;background:linear-gradient(90deg,#d7b888,transparent)}
+.scene-indicator .si-label{font:500 9px var(--sans);letter-spacing:.17em}
+.scene-indicator .si-chevron{font-size:10px;opacity:.7}
+@media(max-width:700px){.portal-wheel{height:125vmax;width:125vmax}.portal-name{font-size:clamp(60px,16vw,88px);margin:18px 0}.portal-caption{font-size:19px}.portal-copy::before,.portal-copy::after{margin:14px 0}.portal-sub{font-size:8px}.portal-wing::after{inset:7%}.scene-indicator{left:12px;bottom:calc(13px + env(safe-area-inset-bottom,0px));gap:6px;padding:7px 9px;background:rgba(5,18,16,.53);border:1px solid #f5db9b24;backdrop-filter:blur(8px)}.scene-indicator .si-number{font-size:19px}.scene-indicator .si-label{font-size:7px}.scene-indicator .si-rule{width:16px}.chapter-image .cinema-title-watermark{top:12%;font-size:clamp(52px,13vw,85px)}.chapter-image .cinema-frame{inset:18px}.chapter-image img{transform:translate3d(0,var(--scene-offset,0px),0) scale(var(--scene-scale,1.06))}.chapter-image.is-active img{transform:translate3d(0,var(--scene-offset,0px),0) scale(var(--scene-scale,1.06))}.cinema-portal[data-theme="haldi"] .portal-flower{font-size:340px}}
+@media(prefers-reduced-motion:reduce){#cinemaParticles,.cinema-portal,.scene-indicator,.chapter-image .cinema-halo,.chapter-image .cinema-title-watermark{display:none!important}.chapter-image img,.chapter-image.is-active img{transform:none!important;transition:none!important}.kinetic-word{transform:none!important;opacity:1!important;animation:none!important;filter:none!important}.invocation .motif,.date-number,.date-halo,.venue-graphic,.rsvp-deco{transform:none!important}.chapter-image::after{display:none!important}}
+/* A bespoke multi-ring ornamental mandala rotates through the cut. */
+.portal-mandala{position:absolute;z-index:4;left:50%;top:50%;width:min(100vmax,930px);height:min(100vmax,930px);object-fit:contain;transform:translate(-50%,-50%) rotate(var(--ring-rotation)) scale(var(--ring-scale));opacity:var(--mandala-opacity,0);pointer-events:none;filter:drop-shadow(0 0 18px color-mix(in srgb,var(--portal-accent) 25%,transparent));}
+/* Differentiated choreography: every act has its own geometry and personality. */
+.cinema-portal[data-theme="parchment"] .portal-wing--left{transform:translate3d(calc(0px - var(--wing)),0,0) rotate(-4deg);transform-origin:left center}
+.cinema-portal[data-theme="parchment"] .portal-wing--right{transform:translate3d(var(--wing),0,0) rotate(4deg);transform-origin:right center}
+.cinema-portal[data-theme="cosmos"] .portal-wheel{border-radius:49% 51% 48% 52%;box-shadow:0 0 0 75px #aaaaff0b,0 0 0 185px #ffffff05,inset 0 0 150px #c5c8ff17}
+.cinema-portal[data-theme="cosmos"] .portal-mandala{opacity:var(--mandala-opacity,0)}
+.cinema-portal[data-theme="floral"] .portal-wing{clip-path:polygon(0 0,100% 0,91% 25%,100% 50%,91% 75%,100% 100%,0 100%)}
+.cinema-portal[data-theme="floral"] .portal-wheel{box-shadow:0 0 0 43px #b7cb8e18,0 0 0 130px #eab7830b,inset 0 0 60px #aaba9a29}
+.cinema-portal[data-theme="sufi"] .portal-wheel{border-radius:50%;transform:translate(-50%,-50%) scale(var(--ring-scale)) rotate(var(--ring-rotation)) rotateX(54deg);box-shadow:0 0 0 48px #b3b3ff10,0 0 0 160px #b3b3ff08}
+.cinema-portal[data-theme="haldi"] .portal-wing--left{transform:translate3d(calc(0px - var(--wing)),0,0) rotate(-11deg);transform-origin:left center}
+.cinema-portal[data-theme="haldi"] .portal-wing--right{transform:translate3d(var(--wing),0,0) rotate(11deg);transform-origin:right center}
+.cinema-portal[data-theme="haldi"] .portal-mandala{filter:drop-shadow(0 0 22px #ffe564)}
+.cinema-portal[data-theme="baraat"] .portal-wing--left{clip-path:polygon(0 0,100% 0,96% 18%,100% 35%,93% 52%,100% 68%,97% 84%,100% 100%,0 100%)}
+.cinema-portal[data-theme="baraat"] .portal-wing--right{clip-path:polygon(0 0,100% 0,100% 100%,0 100%,3% 84%,0 68%,7% 52%,0 35%,4% 18%)}
+.cinema-portal[data-theme="reception"] .portal-wing--left{clip-path:polygon(0 0,100% 0,88% 19%,100% 42%,88% 70%,100% 100%,0 100%)}
+.cinema-portal[data-theme="reception"] .portal-wing--right{clip-path:polygon(0 0,100% 0,100% 100%,0 100%,12% 70%,0 42%,12% 19%)}
+.cinema-portal[data-theme="reception"] .portal-wheel{border-radius:40% 60% 49% 51%;box-shadow:0 0 0 70px #f0b3d210,0 0 0 140px #ffffff0b,inset 0 0 95px #ffe2ec18}
+.cinema-portal[data-theme="wedding"] .portal-wheel{box-shadow:0 0 0 39px #ff8b4a24,0 0 0 100px #ee6f4d0f,0 0 90px #ff9b4566,inset 0 0 100px #e8704b55}
+.cinema-portal[data-theme="wedding"] .portal-mandala{filter:drop-shadow(0 0 20px #f9a65c)}
+/* The destination unfolds vertically like a ceremonial scroll. */
+.cinema-portal[data-theme="destination"] .portal-wing{width:100%;height:51%;left:0;right:0;top:auto;bottom:auto;clip-path:none}
+.cinema-portal[data-theme="destination"] .portal-wing--left{top:0;transform:translate3d(0,calc(0px - var(--wing)),0)}
+.cinema-portal[data-theme="destination"] .portal-wing--right{bottom:0;transform:translate3d(0,var(--wing),0)}
+/* Closing the book with burgundy, gold, and a nearly circular seal. */
+.cinema-portal[data-theme="forever"] .portal-wing--left{transform:translate3d(calc(0px - var(--wing)),0,0) rotate(-7deg)}
+.cinema-portal[data-theme="forever"] .portal-wing--right{transform:translate3d(var(--wing),0,0) rotate(7deg)}
+.cinema-portal[data-theme="forever"] .portal-flower{opacity:var(--flower-opacity,0)}
+@media(max-width:700px){.portal-mandala{width:120vmax;height:120vmax}.cinema-portal[data-theme="destination"] .portal-wing{height:51%}}
+/* The opening seal releases one ceremonial beam before the palace appears. */
+.entry-opening-light{position:absolute;inset:0;pointer-events:none;z-index:20;opacity:0;background:radial-gradient(circle at 50% 46%,#fffbe8 0%,#ffe4a5 6%,#c48f4c7a 18%,#ffffff00 57%);mix-blend-mode:screen;transform:scale(.12)}
+.entry.opening .entry-opening-light{animation:royal-opening-light 1.32s cubic-bezier(.2,.7,.1,1) both}
+@keyframes royal-opening-light{0%,35%{opacity:0;transform:scale(.12)}64%{opacity:.92;transform:scale(2.4)}89%{opacity:.7;transform:scale(4.8)}100%{opacity:0;transform:scale(6)}}
+@media(prefers-reduced-motion:reduce){.entry-opening-light{display:none!important}}

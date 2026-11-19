@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en-IN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#091915" />
+  <meta name="color-scheme" content="dark light" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Aditya & Shreya — An Invitation Written in the Stars</title>
+  <meta name="description" content="With love, the Agrawal and Kothari families invite you to the wedding of Aditya (Raghav) and Shreya, 10–11 December 2026, Shivdhara Resort, Palanpur." />
+  <meta property="og:title" content="Aditya & Shreya | 10–11 December 2026" />
+  <meta property="og:description" content="Some stories are written in the stars. You are invited to ours." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/preview.jpg" />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&family=Great+Vibes&family=Noto+Serif+Devanagari:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="cinema.css" />
+  <script src="script.js" defer></script>
+  <script src="cinema.js" defer></script>
+</head>
+<body class="locked">
+  <div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
+  <canvas id="petalCanvas" aria-hidden="true"></canvas>
+  <canvas id="cinemaParticles" aria-hidden="true"></canvas>
+  <div class="film-grain" aria-hidden="true"></div>
+
+  <div id="entry" class="entry" aria-label="Open invitation">
+    <div class="entry-halo" aria-hidden="true"></div><div class="entry-opening-light" aria-hidden="true"></div>
+    <div class="entry-topline"><span class="tiny-diamond">✦</span> A PERSONAL INVITATION <span class="tiny-diamond">✦</span></div>
+    <div class="envelope-stage">
+      <div id="envelope" class="envelope">
+        <div class="env-shadow"></div>
+        <div class="env-inner"></div>
+        <div class="letter" aria-hidden="true">
+          <div class="letter-inner">
+            <span>॥ श्री गणेशाय नमः ॥</span>
+            <b>Aditya <i>&</i> Shreya</b>
+            <small>10 & 11 DECEMBER 2026</small>
+          </div>
+        </div>
+        <div class="env-back"></div>
+        <div class="env-front"></div>
+        <div class="env-flap"></div>
+        <button id="openBtn" class="seal" aria-label="Break the seal and open invitation"><span class="seal-monogram">A<span>&</span>S</span><span class="seal-shimmer"></span></button>
+      </div>
+    </div>
+    <div class="entry-instructions">
+      <p class="entry-title">A story of two souls</p>
+      <p class="entry-sub">An invitation meant to be experienced.</p>
+      <button id="openTextBtn" class="entry-cta">BREAK THE SEAL <span>✦</span> ENTER THE CELEBRATION</button>
+      <small>Sound is optional. Best experienced slowly.</small>
+    </div>
+    <span class="entry-corner corner-tl" aria-hidden="true"></span><span class="entry-corner corner-tr" aria-hidden="true"></span>
+    <span class="entry-corner corner-bl" aria-hidden="true"></span><span class="entry-corner corner-br" aria-hidden="true"></span>
+  </div>
+
+  <header id="siteHeader" class="site-header" aria-label="Page navigation">
+    <a href="#home" class="site-mark" aria-label="Back to beginning"><span class="mark-sign">A<span>✦</span>S</span><span class="mark-small">THE WEDDING</span></a>
+    <nav class="desktop-nav" aria-label="Main sections"><a href="#story">Our story</a><a href="#celebrations">Celebrations</a><a href="#venue">The venue</a></nav>
+    <div class="header-actions"><button class="sound-toggle" id="soundToggle" aria-label="Turn music on" aria-pressed="false"><span class="sound-bars"><i></i><i></i><i></i><i></i></span><span id="soundLabel">SOUND OFF</span></button><a class="header-rsvp" href="#rsvp">RSVP <span>↗</span></a></div>
+  </header>
+  <main id="siteMain">
+    <section class="hero" id="home" aria-label="Wedding invitation">
+      <div class="hero-aura" aria-hidden="true"></div>
+      <div class="hero-ring ring-one" aria-hidden="true"></div><div class="hero-ring ring-two" aria-hidden="true"></div>
+      <div class="hero-architecture" aria-hidden="true"><img src="assets/palace.svg" fetchpriority="high" alt="" /></div>
+      <div class="hero-curtain left" aria-hidden="true"></div><div class="hero-curtain right" aria-hidden="true"></div>
+      <div class="hero-vignette" aria-hidden="true"></div>
+      <div class="hero-content">
+        <p class="eyebrow hero-kicker rise">THE AGRAWAL & KOTHARI FAMILIES <span>✦</span> REQUEST THE HONOUR OF YOUR PRESENCE</p>
+        <div class="hero-ornament rise" aria-hidden="true"><span></span><i>✧</i><span></span></div>
+        <p class="hero-intro rise">A union blessed by the stars</p>
+        <h1 class="hero-names"><span class="name-one rise">Aditya</span><span class="name-amp rise">&</span><span class="name-two rise">Shreya</span></h1>
+        <p class="hero-location rise">PALANPUR <span class="sep">◆</span> GUJARAT</p>
+        <div class="hero-date rise"><span>10</span><i>—</i><span>11</span><div><b>DECEMBER</b><small>2026</small></div></div>
+      </div>
+      <a href="#story" class="scroll-indicator" aria-label="Scroll to invitation"><span>SCROLL TO EXPLORE</span><i></i></a>
+      <div class="hero-side-label" aria-hidden="true">A CELEBRATION OF FOREVER · 2026</div>
+    </section>
+
+    <section class="invocation section-paper" id="story">
+      <div class="paper-ornament ornament-top" aria-hidden="true">❁</div>
+      <div class="invocation-inner">
+        <div class="motif reveal"><img src="assets/ganesha.svg" alt="Illustration of Lord Ganesha" loading="lazy" /></div>
+        <p class="hindi invocation-hindi reveal">॥ श्री गणेशाय नमः ॥</p>
+        <p class="hindi invocation-verse reveal">वक्रतुण्ड महाकाय, सूर्यकोटि समप्रभः।<br/>निर्विघ्नं कुरु मे देव, सर्वकार्येषु सर्वदा॥</p>
+        <div class="gold-rule reveal" aria-hidden="true"><span></span>✦<span></span></div>
+        <p class="section-overline reveal">WITH THE BLESSINGS OF OUR ELDERS</p>
+        <h2 class="editorial-title reveal">Two families.<br/><em>One beautiful beginning.</em></h2>
+        <p class="invocation-text reveal">By the boundless grace of Shri Mangalmay Ganesh ji Maharaj, our Kul Devta Shri Narsingh ji Maharaj, our Kuldevi Beri Wali Maa, and our Pitru Devta ji, we invite you to celebrate the coming together of two souls.</p>
+        <div class="family-cards reveal">
+          <div><small>THE GROOM</small><strong>Aditya <em>(Raghav)</em></strong><p>Grandson of Late Smt. Sarbati Devi & Late Shri Lalchand ji Agrawal</p><p>Son of Smt. Beena & Shri Narayanlal Agrawal</p></div>
+          <span class="family-join">&</span>
+          <div><small>THE BRIDE</small><strong>Shreya</strong><p>Granddaughter of Smt. Ratan Ben & Late Shri Basant Raj ji Kothari</p><p>Daughter of Smt. Dilkhush & Shri Kamlesh ji Kothari (Mumbai)</p></div>
+        </div>
+      </div>
+      <div class="paper-ornament ornament-bottom" aria-hidden="true">❁</div>
+    </section>
+
+    <section class="date-section" id="date">
+      <div class="date-stars" aria-hidden="true"></div><div class="date-halo" aria-hidden="true"></div>
+      <div class="date-wrapper">
+        <p class="section-overline reveal">MARK YOUR CALENDAR</p>
+        <h2 class="editorial-title reveal">A date with <em>destiny.</em></h2>
+        <div class="date-display reveal" id="dateDisplay"><span class="date-decor left-date">✧</span><div class="date-number">11</div><span class="date-decor right-date">✧</span><div class="date-label">FRIDAY <span>·</span> DECEMBER <span>·</span> 2026</div></div>
+        <p class="date-description reveal">Our forever begins in <span>Palanpur, Gujarat.</span></p>
+        <p class="countdown-heading reveal">UNTIL THE CELEBRATION</p>
+        <div class="countdown reveal" id="countdown" role="timer" aria-live="off"><div><strong id="days">00</strong><small>DAYS</small></div><i>:</i><div><strong id="hours">00</strong><small>HOURS</small></div><i>:</i><div><strong id="minutes">00</strong><small>MINS</small></div><i>:</i><div><strong id="seconds">00</strong><small>SECS</small></div></div>
+        <button id="addCalendarMain" class="text-link reveal">ADD TO MY CALENDAR <span>↗</span></button>
+      </div>
+    </section>
+
+    <section class="chapters-intro" id="celebrations"><p class="section-overline reveal">THE WEDDING CHRONICLES</p><h2 class="editorial-title reveal">Five moments.<br/><em>A lifetime of memories.</em></h2><p class="reveal">Every celebration is a chapter in our story. Come be part of every page.</p><div class="chapters-intro-flower" aria-hidden="true">✺</div></section>
+
+    <section class="chapter theme-sufi" id="sufi" aria-labelledby="sufi-title">
+      <div class="chapter-image"><img src="assets/sufi.svg" alt="Illustrated twilight Sufi celebration beneath palace arches and sparkling lights" loading="lazy" /><span class="chapter-image-shade"></span><span class="chapter-illustration-label">THE NIGHT OF A THOUSAND STARS</span></div>
+      <div class="chapter-information"><span class="chapter-index reveal">CHAPTER <b>01</b> / 05</span><span class="chapter-sigil reveal">✶</span><p class="chapter-kicker reveal">AN EVENING UNDER THE STARS</p><h2 id="sufi-title" class="chapter-title reveal">Sufi <em>Night</em></h2><p class="chapter-poem reveal">Where the music meets the moonlight,<br/>and every heart finds its rhythm.</p><div class="chapter-rule reveal"></div><p class="event-date reveal">THURSDAY · 10 DECEMBER 2026</p><p class="event-time reveal">7:00 PM</p><p class="event-venue reveal">SHIVDHARA RESORT · PALANPUR</p><button class="chapter-calendar reveal" data-event="sufi">SAVE THIS EVENT <span>↗</span></button></div>
+    </section>
+
+    <section class="chapter theme-haldi" id="haldi" aria-labelledby="haldi-title">
+      <div class="chapter-image"><img src="assets/haldi.svg" alt="Illustrated golden Haldi Carnival with marigolds and colorful tents" loading="lazy" /><span class="chapter-image-shade"></span><span class="chapter-illustration-label">THE COLOUR OF HAPPINESS</span></div>
+      <div class="chapter-information"><span class="chapter-index reveal">CHAPTER <b>02</b> / 05</span><span class="chapter-sigil reveal">❋</span><p class="chapter-kicker reveal">AN EXPLOSION OF COLOUR</p><h2 id="haldi-title" class="chapter-title reveal">Haldi <em>Carnival</em></h2><p class="chapter-poem reveal">A little sunshine, a little mischief,<br/>a whole lot of love and laughter.</p><div class="chapter-rule reveal"></div><p class="event-date reveal">FRIDAY · 11 DECEMBER 2026</p><p class="event-time reveal">10:30 AM</p><p class="event-venue reveal">SHIVDHARA RESORT · PALANPUR</p><button class="chapter-calendar reveal" data-event="haldi">SAVE THIS EVENT <span>↗</span></button></div>
+    </section>
+
+    <section class="chapter theme-baraat" id="baraat" aria-labelledby="baraat-title">
+      <div class="chapter-image"><img src="assets/baraat.svg" alt="Illustrated royal Baraat procession with a ceremonial white horse" loading="lazy" /><span class="chapter-image-shade"></span><span class="chapter-illustration-label">THE GRAND PROCESSION</span></div>
+      <div class="chapter-information"><span class="chapter-index reveal">CHAPTER <b>03</b> / 05</span><span class="chapter-sigil reveal">♛</span><p class="chapter-kicker reveal">LET THE CELEBRATION BEGIN</p><h2 id="baraat-title" class="chapter-title reveal">The <em>Baraat</em></h2><p class="chapter-poem reveal">Dhol beats, dancing feet,<br/>and a procession full of joy.</p><div class="chapter-rule reveal"></div><p class="event-date reveal">FRIDAY · 11 DECEMBER 2026</p><p class="event-time reveal">5:00 PM</p><p class="event-venue reveal">SHIVDHARA RESORT · PALANPUR</p><button class="chapter-calendar reveal" data-event="baraat">SAVE THIS EVENT <span>↗</span></button></div>
+    </section>
+
+    <section class="chapter theme-reception" id="reception" aria-labelledby="reception-title">
+      <div class="chapter-image"><img src="assets/reception.svg" alt="Illustrated floral wedding reception arch with candlelight and the couple" loading="lazy" /><span class="chapter-image-shade"></span><span class="chapter-illustration-label">AN EVENING OF BLESSINGS</span></div>
+      <div class="chapter-information"><span class="chapter-index reveal">CHAPTER <b>04</b> / 05</span><span class="chapter-sigil reveal">✦</span><p class="chapter-kicker reveal">BLESSING CEREMONY & DINNER</p><h2 id="reception-title" class="chapter-title reveal">The <em>Reception</em></h2><p class="chapter-poem reveal">Good food, warm wishes,<br/>and the people who make life beautiful.</p><div class="chapter-rule reveal"></div><p class="event-date reveal">FRIDAY · 11 DECEMBER 2026</p><p class="event-time reveal">7:30 PM ONWARDS</p><p class="event-venue reveal">SHIVDHARA RESORT · PALANPUR</p><button class="chapter-calendar reveal" data-event="reception">SAVE THIS EVENT <span>↗</span></button></div>
+    </section>
+
+    <section class="chapter theme-wedding" id="wedding" aria-labelledby="wedding-title">
+      <div class="chapter-image"><img src="assets/wedding.svg" alt="Illustrated sacred wedding mandap with a ceremonial fire" loading="lazy" /><span class="chapter-image-shade"></span><span class="chapter-illustration-label">THE SACRED VOWS</span></div>
+      <div class="chapter-information"><span class="chapter-index reveal">CHAPTER <b>05</b> / 05</span><span class="chapter-sigil reveal">∞</span><p class="chapter-kicker reveal">SEVEN STEPS. ONE FOREVER.</p><h2 id="wedding-title" class="chapter-title reveal">The <em>Wedding</em></h2><p class="chapter-poem reveal">Under the stars and before the sacred fire,<br/>a promise that lasts beyond a lifetime.</p><div class="chapter-rule reveal"></div><p class="event-date reveal">FRIDAY · 11 DECEMBER 2026</p><p class="event-time reveal">MIDNIGHT </p><p class="event-venue reveal">SHIVDHARA RESORT · PALANPUR</p><button class="chapter-calendar reveal" data-event="wedding">SAVE THIS EVENT <span>↗</span></button></div>
+    </section>
+
+    <section class="blessing-section"><span class="blessing-star star-one" aria-hidden="true">✦</span><span class="blessing-star star-two" aria-hidden="true">✧</span><span class="blessing-star star-three" aria-hidden="true">✦</span><div class="blessing-inner"><p class="section-overline reveal">FROM OUR HEARTS TO YOURS</p><h2 class="editorial-title reveal">It wouldn't be the<br/><em>same without you.</em></h2><p class="reveal">As we begin this beautiful new chapter together, we would be honoured to have you join us in celebrating our union and sharing in the happiness of our families.</p><div class="gold-rule reveal"><span></span>✦<span></span></div><strong class="reveal">THE AGRAWAL & KOTHARI FAMILIES</strong></div></section>
+
+    <section class="venue-section section-paper" id="venue"><div class="venue-grid"><div class="venue-graphic reveal" aria-hidden="true"><span class="venue-glow"></span><span class="venue-arch"><span class="venue-mini-building">✦</span></span><span class="venue-caption">P A L A N P U R</span></div><div class="venue-info"><p class="section-overline reveal">WHERE THE MAGIC UNFOLDS</p><h2 class="editorial-title reveal">One beautiful<br/><em>destination.</em></h2><div class="venue-line reveal"></div><h3 class="reveal">Shivdhara Resort</h3><p class="reveal">Chitrasani, Deesa Highway<br/>Palanpur, Gujarat, India</p><p class="venue-dates reveal">10 & 11 DECEMBER 2026</p><div class="venue-actions reveal"><a class="gold-button" href="https://www.google.com/maps/search/?api=1&amp;query=Shivdhara+Resort%2C+Palanpur%2C+Gujarat" target="_blank" rel="noopener noreferrer">GET DIRECTIONS <span>↗</span></a><button id="copyVenue" class="outline-button">COPY ADDRESS <span>⧉</span></button></div></div></div></section>
+
+    <section class="rsvp-section" id="rsvp"><div class="rsvp-deco deco-left" aria-hidden="true">❊</div><div class="rsvp-deco deco-right" aria-hidden="true">❊</div><div class="rsvp-content"><p class="section-overline reveal">A SEAT AT OUR CELEBRATION</p><h2 class="editorial-title reveal">Your presence is<br/><em>our greatest gift.</em></h2><p class="reveal">We can't wait to celebrate with you.</p><a class="rsvp-main reveal" href="tel:+919413373248"><span>RSVP BY PHONE</span><b>+91 94133 73248</b><i>↗</i></a><small class="reveal">SHRI NARAYANLAL AGRAWAL</small><div class="rsvp-links reveal"><button id="shareInvite">SHARE INVITATION <span>↗</span></button><button id="calendarAll">ADD DATES TO CALENDAR <span>↗</span></button></div></div></section>
+  </main>
+  <footer class="site-footer"><p>MADE WITH <span>♥</span> FOR A FOREVER KIND OF LOVE</p><strong>Aditya <em>&</em> Shreya</strong><p>10 — 11 DECEMBER 2026 <span>✦</span> PALANPUR, INDIA</p><a href="#home">BACK TO THE BEGINNING ↑</a></footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <audio id="bgAudio" src="assets/celebration-soundscape.mp3" loop preload="none"></audio>
+</body>
+</html>
